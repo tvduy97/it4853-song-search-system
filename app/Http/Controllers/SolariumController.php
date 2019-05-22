@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
+
 
 class SolariumController extends Controller
 {
@@ -43,7 +45,41 @@ class SolariumController extends Controller
 	        return view('search', compact('resultset', 'input', 'numFound', 'queryTime', 'currentPage', 'totalPage', 'link'));
     		
     	} catch (\Exception $e) {
-    		return redirect()->back()->withErrors(['somethng_went_wrong'=>'Something went wrong!']);
+    		#var_dump($e);
+    		return redirect()->back()
+    			->withErrors(['somethng_went_wrong'=> 'Something went wrong!']);
+    	}
+    }
+    public function ping()
+    {
+        // create a ping query
+        $ping = $this->client->createPing();
+        // execute the ping query
+        try {
+            $this->client->ping($ping);
+            return "ok";
+            //return response()->json('OK');
+        } catch (\Exception $e) {
+        	return "error";
+            return response()->json('ERROR', 500);
+        }
+    }
+    public function SearchFullText(Request $req){
+    	$q = $req->q;
+    	echo $q;
+    	try
+    	{
+    		echo "haha";
+    		$query = $this->client->createSelect();
+    		$query->setQuery("q: '" . $q . "'");
+    		echo "hehe";
+	        $resultset = $this->client->select($query);
+	        
+	        var_dump($resultset);
+
+    	}
+    	catch(\Exception $e){
+    		return "error";
     	}
     }
 }

@@ -11,7 +11,7 @@
 	@endif
 	<form method="get" action="{{ route('search') }}">
 		<input type="text" name="q" value="{{ isset($input)?$input:'' }}">
-		<input type="submit" value="Search">
+		<input type="button" value="Search">
 	</form>
 	@if ($resultset == null)
 	@elseif (count($resultset) > 0)

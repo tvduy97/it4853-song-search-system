@@ -1446,16 +1446,16 @@
         },
         {
             "name": "solarium/solarium",
-            "version": "5.0.0",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solariumphp/solarium.git",
-                "reference": "bdb78b9260df9922161cfe8b4cf7df9243b50ccb"
+                "reference": "cccdc043f369ebb47dd514a91fc175eea04a3dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/bdb78b9260df9922161cfe8b4cf7df9243b50ccb",
-                "reference": "bdb78b9260df9922161cfe8b4cf7df9243b50ccb",
+                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/cccdc043f369ebb47dd514a91fc175eea04a3dae",
+                "reference": "cccdc043f369ebb47dd514a91fc175eea04a3dae",
                 "shasum": ""
             },
             "require": {
@@ -1502,7 +1502,7 @@
                 "search",
                 "solr"
             ],
-            "time": "2019-04-30T14:58:42+00:00"
+            "time": "2019-05-14T15:20:41+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -15,7 +15,15 @@ Route::get('/', function () {
     return redirect()->route('search');
 });
 Route::get('/search', 'SolariumController@search')->name('search');
+Route::get('/ping', 'SolariumController@ping');
+Route::get('/vananh', 'SolariumController@SearchFullText');
 
+Route::get('/BasicSearch', 'TestController@searchBasic');
+Route::get('/AdvancedSearch', 'TestController@searchAdvance');
+Route::get('/Search/BasicResult', 'TestController@getBasicResult');
+Route::get('/Search/AdvancedResult', 'TestController@getAdvancedResult');
+
+//
 Route::group(['prefix' => 'admin'], function (){
 	Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('/login', 'Auth\LoginController@login');
