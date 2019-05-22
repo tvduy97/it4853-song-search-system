@@ -14,13 +14,11 @@
 Route::get('/', function () {
     return redirect()->route('search');
 });
-Route::get('/search', 'SolariumController@search')->name('search');
 Route::get('/ping', 'SolariumController@ping');
 Route::get('/vananh', 'SolariumController@SearchFullText');
 
-Route::get('/BasicSearch', 'TestController@searchBasic');
+Route::get('/BasicSearch', 'SolariumController@basicSearch')->name('basic.search');
 Route::get('/AdvancedSearch', 'TestController@searchAdvance');
-Route::get('/Search/BasicResult', 'TestController@getBasicResult');
 Route::get('/Search/AdvancedResult', 'TestController@getAdvancedResult');
 
 //

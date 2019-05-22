@@ -1,0 +1,1 @@
+<input class="form-control" type="text" placeholder="Bạn muốn tìm gì ?" name="q" value="{{ isset($input)?$input:'' }}">

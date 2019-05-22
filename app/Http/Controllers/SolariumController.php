@@ -15,17 +15,28 @@ class SolariumController extends Controller
         $this->client = $client;
     }
 
-    public function search()
+    public function basicSearch(Request $request)
     {
     	try {
-    		$resultset = null;
-	    	$input = Input::get('q');
-	    	$start = Input::get('start');
-	    	$start = isset($start)?$start:0;
-	    	if ($input) {
+    		$param = $request->all();
+    		if (array_key_exists('q', $param)) {
+    			if ($param['q'] == null) {
+    				return back();
+    			}
+
+    			$input = $param['q'];
+	    		$start = isset($param['start']) ? $param['start'] : 0;
+		    	$filter = $param['filter'];
+	    		$resultset = null;
+		    	if ($filter == 'all') {
+		    		$queryStr = '(title:"'.$input.'")^2.25 (singer:"'.$input.'")^2.0 (lyric:"'.$input.'")^1.75 (title:'.$input.')^1.5 (singer:'.$input.')^1.25 (lyric:'.$input.')';
+		    	} else {
+		    		$queryStr = '('.$filter.':"'.$input.'")^1.5 ('.$filter.':'.$input.')';
+		    	}
+		    	
 	    		$query = $this->client->createSelect();
 	    		$query->setOmitHeader(false);
-		        $query->setQuery('lyric:"' . $input . '"');
+		        $query->setQuery($queryStr);
 		        $query->setStart($start);
 		        $query->setRows(10);
 		        $resultset = $this->client->select($query);
@@ -40,16 +51,17 @@ class SolariumController extends Controller
 		        }else {
 		        	$link = $templink.'&start=';
 		        }
-	    	}
 
-	        return view('search', compact('resultset', 'input', 'numFound', 'queryTime', 'currentPage', 'totalPage', 'link'));
-    		
+		        return view('basic_result', compact('resultset', 'input', 'numFound', 'queryTime', 'currentPage', 'totalPage', 'link', 'filter'));
+		    } else {
+		    	return view('basic_search');
+		    }
     	} catch (\Exception $e) {
-    		#var_dump($e);
     		return redirect()->back()
     			->withErrors(['somethng_went_wrong'=> 'Something went wrong!']);
     	}
     }
+
     public function ping()
     {
         // create a ping query
