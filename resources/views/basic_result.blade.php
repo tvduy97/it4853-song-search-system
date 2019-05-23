@@ -30,7 +30,7 @@
             @foreach ($resultset as $data)
               <li class="list-group-item">
                 <ul class="list-group">
-                  <a href="{{ $data->link[0] }}" target="blank" tool>
+                  <a href="{{ $data->id[0] }}" target="blank" tool>
                     <h4 class="fix-margin-bottom">Bài Hát: {{ $data->title[0] }}</h4>
                   </a>
                   <p class="fix-margin-bottom">Ca Sĩ: {{ $data->singer[0] }}</p>
