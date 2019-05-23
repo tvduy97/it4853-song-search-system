@@ -44,5 +44,5 @@ php artisan serve
 ```
 - Truy cập url sau:
 ```
-http://localhost:8000/search
+http://localhost:8000
 ```
